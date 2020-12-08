@@ -2,6 +2,7 @@ require './src/archive.rb'
 require 'io/console'
 require 'bcrypt'
 require 'byebug'
+require './src/manager.rb'
 
 class Login
 
@@ -21,6 +22,8 @@ class Login
         credential.gsub!("\n", "")
       end
       current_user()
+      @manager = Manager.new
+      @manager.menu
     end
   end
 
