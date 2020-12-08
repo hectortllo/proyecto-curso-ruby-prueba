@@ -1,14 +1,8 @@
-require './src/archive.rb'
-require 'io/console'
-require 'bcrypt'
+require './src/login.rb'
 
 def main
-  file = Archive.new
-  puts "Ingrese su nombre de usuario: "
-  username = gets.chomp
-  puts "Ingrese su contraseña: "
-  password = BCrypt::Password.create(STDIN.noecho(&:gets).chomp)
-  file.write_file(username, password)
+  login = Login.new
+  login.user_exist?
 end
 
 main
