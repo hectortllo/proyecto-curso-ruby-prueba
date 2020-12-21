@@ -10,6 +10,7 @@ class Manager
   def menu
     op = 0
     while(op != 10)
+      system 'clear'
       puts "1. Crear tarea"
       puts "2. Listar todas las tareas"
       puts "3. Buscar tarea por nombre"
@@ -27,20 +28,28 @@ class Manager
           system 'clear'
           create_task
         when 2
+          system 'clear'
           get_tasks
         when 3
+          system 'clear'
           get_task_by_name
         when 4
+          system 'clear'
           update_task
         when 5
+          system 'clear'
           mark_as_in_process
         when 6
+          system 'clear'
           mark_as_done
         when 7
+          system 'clear'
           get_all_created
         when 8
+          system 'clear'
           get_all_process
         when 9
+          system 'clear'
           get_all_done
       end
     end
@@ -54,6 +63,7 @@ class Manager
     puts "Nombre de la tarea: "
     name = gets.chomp
     @task.create(name, 0)
+    gets
   end
 
 =begin
@@ -61,6 +71,7 @@ class Manager
 =end
   def get_tasks
     puts $manager
+    gets
   end
 
 =begin
@@ -71,6 +82,7 @@ class Manager
     puts "Ingrese el nombre de la tarea: "
     name = gets.chomp
     @task.show_by_name(name)
+    gets
   end
 
 =begin
@@ -80,12 +92,14 @@ class Manager
     puts "Ingrese el nombre de la tarea: "
     name = gets.chomp
     @task.update(name)
+    gets
   end
 
   def mark_as_in_process
     puts "Ingrese el nombre de la tarea a iniciar: "
     name = gets.chomp
     @task.mark_as_in_process(name)
+    gets
   end
 
   def mark_as_done
@@ -96,14 +110,17 @@ class Manager
 
   def get_all_created
     puts @task.get_all_created
+    gets
   end
 
   def get_all_process
     puts @task.get_all_process
+    gets
   end
 
   def get_all_done
     puts @task.get_all_done
+    gets
   end
 
 end
