@@ -24,6 +24,7 @@ class Manager
       op = gets.to_i
       case op
         when 1
+          system 'clear'
           create_task
         when 2
           get_tasks
