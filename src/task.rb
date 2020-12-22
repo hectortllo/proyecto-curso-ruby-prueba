@@ -16,9 +16,9 @@ class Task
   end
   
   def show_by_name(name)
-    task = $manager.select {
-      |task| task[:name] == name
-    }
+    task = $manager.select do |task|
+      task[:name] == name
+    end
     puts task.inspect
     task
   end

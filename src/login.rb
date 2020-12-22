@@ -13,7 +13,7 @@ class Login
   end
   
   def user_exist?
-    if (!@file.file_exists?)
+    if (!@file.file_exists?('./dist/user.txt'))
       new_user()
       @file.write_file(@username, @password)
     else

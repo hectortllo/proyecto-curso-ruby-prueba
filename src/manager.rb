@@ -1,12 +1,24 @@
 require './src/task.rb'
+require './src/archive.rb'
 
 class Manager
   $manager = []
   
   def initialize
     @task = Task.new
+    @archive = Archive.new
+    $manager = @archive.read_file_tasks
   end
 
+  def initialize_file
+    if(!@archive.file_exists?('./dist/tasks.txt'))
+      $manager = ""
+      @archive.create_file_tasks
+    else
+      $manager = @archive.read_file_tasks
+    end
+    byebug
+  end
   def menu
     op = 0
     while(op != 10)
@@ -63,6 +75,7 @@ class Manager
     puts "Nombre de la tarea: "
     name = gets.chomp
     @task.create(name, 0)
+    @archive.write_file_tasks
     gets
   end
 
@@ -92,6 +105,7 @@ class Manager
     puts "Ingrese el nombre de la tarea: "
     name = gets.chomp
     @task.update(name)
+    @archive.write_file_tasks
     gets
   end
 
@@ -99,6 +113,7 @@ class Manager
     puts "Ingrese el nombre de la tarea a iniciar: "
     name = gets.chomp
     @task.mark_as_in_process(name)
+    @archive.write_file_tasks
     gets
   end
 
@@ -106,6 +121,7 @@ class Manager
     puts "Ingrese el nombre de la tarea a iniciar: "
     name = gets.chomp
     @task.mark_as_done(name)
+    @archive.write_file_tasks
   end
 
   def get_all_created
